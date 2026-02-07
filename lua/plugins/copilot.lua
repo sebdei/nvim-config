@@ -1,5 +1,6 @@
+-- required for auth token in code companion
 return {
 	"github/copilot.vim",
-	enabled = true,
+	enabled = false,
 	event = "VeryLazy",
 }

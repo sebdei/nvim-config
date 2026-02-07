@@ -6,13 +6,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 	},
-	opts = {
-		-- strategies = {
-		-- 	inline = {
-		-- 		enabled = false,
-		-- 	},
-		-- },
-	},
+	opts = {},
 	keys = {
 		{ "<leader>cp", ":CodeCompanion<CR>", mode = { "n", "v" }, desc = "[C]ode Companion [P]rompt" },
 		{ "<leader>ca", ":CodeCompanionAction<CR>", mode = { "n", "v" }, desc = "[C]ode Companion [A]ction" },
