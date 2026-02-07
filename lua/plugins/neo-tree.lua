@@ -8,18 +8,19 @@ return {
 	},
 	lazy = false, -- neo-tree will lazily load itself
 	keys = {
-		-- { "\\", ":Neotree reveal<CR>", desc = "NeoTree reveal", silent = true },
+		{ "\\", ":Neotree reveal<CR>", desc = "NeoTree reveal", silent = true },
 	},
 	opts = {
 		filesystem = {
-			folow_current_file = {
-				enable = true,
+			follow_current_file = {
+				enabled = true,
+				leave_dirs_open = true,
 			},
 			window = {
 				mappings = {
 					["f"] = "noop",
 					["<space>"] = "noop",
-					-- ["\\"] = "close_window",
+					["\\"] = "close_window",
 				},
 			},
 		},

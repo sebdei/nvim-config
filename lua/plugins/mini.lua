@@ -1,5 +1,8 @@
 return {
-	"nvim-mini/mini.nvim",
-	enabled = true,
-	version = false,
+	-- sic! mini is a collection of tools and only sub modules are activated here
+	{
+		"nvim-mini/mini.ai",
+		enabled = true,
+		version = false,
+	},
 }
