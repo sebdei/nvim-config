@@ -4,8 +4,10 @@ return {
 	opts = {
 		delay = 0,
 		icons = { mappings = vim.g.have_nerd_font },
+		preset = "modern",
 		spec = {
 			{ "<leader>f", group = "[F]ind", mode = { "n", "v" } },
+			{ "<leader>c", group = "[C]ode", mode = { "n", "v" } },
 			{ "<leader>t", group = "[T]oggle" },
 			{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
 		},

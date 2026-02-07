@@ -10,6 +10,7 @@ return {
 	opts = {},
 	---@diagnostic enable: missing-fields
 	keys = {
-		{ "<leader>fz", ":FzfLua", desc = "[F][z]f" },
+		{ "<leader>fz", ":FzfLua<CR>", desc = "[F][z]f" },
+		{ "<leader>fr", ":FzfLua registers<CR>", desc = "[F]ind [R]egisters" },
 	},
 }
