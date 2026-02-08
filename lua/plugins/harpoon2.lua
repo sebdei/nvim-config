@@ -50,6 +50,7 @@ return {
 		local harpoon = require("harpoon")
 		harpoon:setup()
 
+		-- Telescope ui picker
 		local conf = require("telescope.config").values
 
 		function harpoon:toggle_telescope(harpoon_files)
