@@ -48,7 +48,7 @@ return {
 	},
 	config = function()
 		local harpoon = require("harpoon")
-		harpoon:setup({})
+		harpoon:setup()
 
 		local conf = require("telescope.config").values
 
