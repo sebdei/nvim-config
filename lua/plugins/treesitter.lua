@@ -3,11 +3,9 @@ return {
 	lazy = false,
 	build = ":TSUpdate",
 	config = function()
-		require("nvim-treesitter").install({
-			"go",
-			"javascript",
-			"lua",
-		})
+		local supported_languages = { "go", "javascript", "lua" }
+
+		require("nvim-treesitter").install(supported_languages)
 
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = { "go" },
