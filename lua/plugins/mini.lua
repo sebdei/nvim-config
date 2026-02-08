@@ -5,4 +5,9 @@ return {
 		enabled = true,
 		version = false,
 	},
+	{
+		"nvim-mini/mini.notify",
+		enabled = true,
+		version = false,
+	},
 }
