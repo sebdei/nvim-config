@@ -8,6 +8,7 @@ return {
 		spec = {
 			{ "<leader>f", group = "[F]ind", mode = { "n", "v" } },
 			{ "<leader>c", group = "[C]ode", mode = { "n", "v" } },
+			{ "<leader>s", group = "[S]hell", mode = { "n" } },
 			{ "<leader>t", group = "[T]oggle" },
 			{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
 		},
