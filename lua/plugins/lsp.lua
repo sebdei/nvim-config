@@ -54,22 +54,24 @@ return {
 				--
 				-- In this case, we create a function that lets us more easily define mappings specific
 				-- for LSP related items. It sets the mode, buffer and description for us each time.
-				local map = function(keys, func, desc, mode)
+				local set_keymap = function(keys, func, desc, mode)
 					mode = mode or "n"
-					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
 				end
 
-				-- Rename the variable under your cursor.
-				--  Most Language Servers support renaming across files, etc.
-				map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
+				set_keymap("gra", vim.lsp.buf.code_action, "[A]ction")
+				set_keymap("grv", vim.lsp.buf.declaration, "[G]oto [V]ariable")
+				set_keymap("grh", vim.lsp.buf.hover, "[H]over")
+				set_keymap("grk", vim.lsp.buf.signature_help, "Signature Help")
+				set_keymap("grn", vim.lsp.buf.rename, "Re[n]ame")
 
-				-- Execute a code action, usually your cursor needs to be on top of an error
-				-- or a suggestion from your LSP for this to activate.
-				map("gra", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
-
-				-- WARN: This is not Goto Definition, this is Goto Declaration.
-				--  For example, in C this would take you to the header.
-				map("grD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+				-- sic! The following keymaps are defined in telescope
+				-- map("grd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+				-- map("gri", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+				-- map("grr", vim.lsp.buf.references, "References")
+				-- map("grs", vim.lsp.buf.document_symbol, "Document [S]ymbols")
+				-- map("grt", vim.lsp.buf.type_definition, "[T]ype Definition")
+				-- map("grw", vim.lsp.buf.workspace_symbol, "[W]orkspace Symbols")
 
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.
@@ -105,7 +107,7 @@ return {
 				--
 				-- This may be unwanted, since they displace some of your code
 				if client and client:supports_method("textDocument/inlayHint", event.buf) then
-					map("<leader>th", function()
+					set_keymap("<leader>th", function()
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 					end, "[T]oggle Inlay [H]ints")
 				end

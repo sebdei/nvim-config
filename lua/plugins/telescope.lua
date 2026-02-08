@@ -93,50 +93,34 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			callback = function(event)
 				local buf = event.buf
 
+				local set_keymap = function(keys, func, desc, mode)
+					mode = mode or "n"
+					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
+				end
+
 				-- Find references for the word under your cursor.
-				vim.keymap.set("n", "grr", builtin.lsp_references, { buffer = buf, desc = "[G]oto [R]eferences" })
+				set_keymap("grr", builtin.lsp_references, "[G]oto [R]eferences")
 
 				-- Jump to the implementation of the word under your cursor.
 				-- Useful when your language has ways of declaring types without an actual implementation.
-				vim.keymap.set(
-					"n",
-					"gri",
-					builtin.lsp_implementations,
-					{ buffer = buf, desc = "[G]oto [I]mplementation" }
-				)
+				set_keymap("gri", builtin.lsp_implementations, "[G]oto [I]mplementation")
 
 				-- Jump to the definition of the word under your cursor.
 				-- This is where a variable was first declared, or where a function is defined, etc.
 				-- To jump back, press <C-t>.
-				vim.keymap.set("n", "grd", builtin.lsp_definitions, { buffer = buf, desc = "[G]oto [D]efinition" })
+				set_keymap("grd", builtin.lsp_definitions, "[G]oto [D]efinition")
 
 				-- Fuzzy find all the symbols in your current document.
 				-- Symbols are things like variables, functions, types, etc.
-				vim.keymap.set(
-					"n",
-					"gO",
-					builtin.lsp_document_symbols,
-					{ buffer = buf, desc = "Open Document Symbols" }
-				)
-
+				set_keymap("grs", builtin.lsp_document_symbols, "Document [S]ymbols")
 				-- Fuzzy find all the symbols in your current workspace.
 				-- Similar to document symbols, except searches over your entire project.
-				vim.keymap.set(
-					"n",
-					"gW",
-					builtin.lsp_dynamic_workspace_symbols,
-					{ buffer = buf, desc = "Open Workspace Symbols" }
-				)
+				set_keymap("grw", builtin.lsp_dynamic_workspace_symbols, "[W]orkspace Symbols")
 
-				-- Jump to the type of the word under your cursor.
+				-- Jump to the type of the word under your curs)
 				-- Useful when you're not sure what type a variable is and you want to see
 				-- the definition of its *type*, not where it was *defined*.
-				vim.keymap.set(
-					"n",
-					"grt",
-					builtin.lsp_type_definitions,
-					{ buffer = buf, desc = "[G]oto [T]ype Definition" }
-				)
+				set_keymap("grt", builtin.lsp_type_definitions, "[G]oto [T]ype Definition")
 			end,
 		})
 
