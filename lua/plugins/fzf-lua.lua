@@ -12,5 +12,12 @@ return {
 	keys = {
 		{ "<leader>fz", ":FzfLua<CR>", desc = "[F][z]f" },
 		{ "<leader>fr", ":FzfLua registers<CR>", desc = "[F]ind [R]egisters" },
+		{ "<leader>ff", ":FzfLua files<CR>", desc = "[F]ind files" },
+		{ "<leader>fg", ":FzfLua live_grep<CR>", desc = "[F]ind by [G]rep" },
+		{ "<leader>fb", ":FzfLua buffers<CR>", desc = "[F]ind in [B]uffers" },
+		{ "<leader>fg", ":FzfLua live_grep<CR>", desc = "[F]ind by [G]rep" },
+		{ "<leader>fg", ":FzfLua live_grep<CR>", desc = "[F]ind by [G]rep" },
+		{ "<leader>fg", ":FzfLua live_grep<CR>", desc = "[F]ind by [G]rep" },
+		{ "<leader>fg", ":FzfLua live_grep<CR>", desc = "[F]ind by [G]rep" },
 	},
 }
