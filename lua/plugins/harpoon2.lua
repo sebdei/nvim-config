@@ -13,7 +13,7 @@ return {
 		{
 			"<C-e>",
 			function()
-				require("harpoon"):toggle_telescope(require("harpoon"):list())
+				require("harpoon"):toggle_fzf(require("harpoon"):list())
 			end,
 			desc = "Harpoon: Open Menu",
 		},
@@ -50,25 +50,22 @@ return {
 		local harpoon = require("harpoon")
 		harpoon:setup()
 
-		-- Telescope ui picker
-		local conf = require("telescope.config").values
-
-		function harpoon:toggle_telescope(harpoon_files)
+		function harpoon:toggle_fzf(harpoon_files)
 			local file_paths = {}
 			for _, item in ipairs(harpoon_files.items) do
 				table.insert(file_paths, item.value)
 			end
 
-			require("telescope.pickers")
-				.new({}, {
-					prompt_title = "Harpoon",
-					finder = require("telescope.finders").new_table({
-						results = file_paths,
-					}),
-					previewer = conf.file_previewer({}),
-					sorter = conf.generic_sorter({}),
-				})
-				:find()
+			require("fzf-lua").fzf_exec(file_paths, {
+				prompt = "Harpoon> ",
+				actions = {
+					["default"] = function(selected)
+						if selected[1] then
+							vim.cmd("edit " .. selected[1])
+						end
+					end,
+				},
+			})
 		end
 	end,
 }
