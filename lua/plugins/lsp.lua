@@ -62,7 +62,7 @@ return {
 				set_keymap("gra", vim.lsp.buf.code_action, "[A]ction")
 				set_keymap("grv", vim.lsp.buf.declaration, "[G]oto [V]ariable")
 				set_keymap("grh", vim.lsp.buf.hover, "[H]over")
-				set_keymap("grk", vim.lsp.buf.signature_help, "Signature Help")
+				set_keymap("gru", vim.lsp.buf.signature_help, "Signat[u]re Help")
 				set_keymap("grn", vim.lsp.buf.rename, "Re[n]ame")
 
 				-- sic! The following keymaps are defined in telescope
