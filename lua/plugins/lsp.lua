@@ -65,7 +65,7 @@ return {
 				set_keymap("gru", vim.lsp.buf.signature_help, "Signat[u]re Help")
 				set_keymap("grn", vim.lsp.buf.rename, "Re[n]ame")
 
-				-- sic! The following keymaps are defined in telescope
+				-- sic! The following keymaps are defined in fzf-lua
 				-- map("grd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 				-- map("gri", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
 				-- map("grr", vim.lsp.buf.references, "References")
