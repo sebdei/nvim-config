@@ -20,7 +20,7 @@ return {
 
 		-- enable language servers
 		for _, value in pairs(opts.language_servers) do
-			vim.lsp.config("lua_ls", { capabilities = capabilities })
+			vim.lsp.config(value, { capabilities = capabilities })
 			vim.lsp.enable(value)
 		end
 
