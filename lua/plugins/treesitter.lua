@@ -5,7 +5,7 @@ return {
 	config = function()
 		local supported_languages = { "go", "javascript", "lua", "vue" }
 
-		require("nvim-treesitter.configs").setup({
+		require("nvim-treesitter").setup({
 			ensure_installed = supported_languages,
 			highlight = { enable = true },
 		})
