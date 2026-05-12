@@ -37,6 +37,13 @@ return {
 			end,
 			desc = "[F]ind [N]eovim config",
 		},
+		{
+			"<leader>ft",
+			function()
+				require("fzf-lua").files({ fzf_opts = { ["--query"] = vim.fn.expand("<cword>") } })
+			end,
+			desc = "[F]ind file and Go[T]o",
+		},
 	},
 	config = function()
 		local fzf = require("fzf-lua")
