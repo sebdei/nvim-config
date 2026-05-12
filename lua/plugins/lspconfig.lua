@@ -12,7 +12,7 @@ return {
 		"saghen/blink.cmp",
 	},
 	opts = {
-		language_servers = { "lua_ls", "gopls", "ts_ls", "vue_ls" },
+		language_servers = { "lua_ls", "gopls", "jdtls", "ts_ls", "vue_ls" },
 	},
 	config = function(_, opts)
 		-- Get blink.cmp capabilities for each language
