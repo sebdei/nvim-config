@@ -19,7 +19,7 @@ return {
 							model = "gpt-5.5",
 						},
 						env = {
-							CODEX_CONFIG = '{"model":"gpt-5.5","web_search":"live"}',
+							CODEX_CONFIG = '{"model":"gpt-5.5","web_search":"cached"}',
 							CODEX_PATH = "codex",
 						},
 					})
@@ -44,10 +44,10 @@ return {
 		},
 	},
 	keys = {
-		{ "<leader>cp", ":CodeCompanion<CR>", mode = { "n", "v" }, desc = "[C]ode Companion [P]rompt" },
-		{ "<leader>ca", ":CodeCompanionAction<CR>", mode = { "n", "v" }, desc = "[C]ode Companion [A]ction" },
+		{ "<leader>ci", ":CodeCompanion<CR>", mode = { "n", "v" }, desc = "[C]ode Companion [I]nline" },
+		{ "<leader>ca", ":CodeCompanionActions<CR>", mode = { "n", "v" }, desc = "[C]ode Companion [A]ctions" },
 		{ "<leader>cc", ":CodeCompanionChat<CR>", mode = { "n", "v" }, desc = "[C]ode Companion [C]hat" },
 		{ "<leader>cm", ":CodeCompanionCmd<CR>", mode = { "n", "v" }, desc = "[C]ode Companion c[m]d" },
-		{ "<leader>ci", ":CodeCompanionCLI<CR>", mode = { "n", "v" }, desc = "[C]ode Companion CL[I]" },
+		{ "<leader>cl", ":CodeCompanionCLI<CR>", mode = { "n", "v" }, desc = "[C]ode Companion C[L]I" },
 	},
 }
