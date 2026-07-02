@@ -43,7 +43,6 @@ return {
 				agents = {
 					codex = {
 						cmd = "codex",
-
 						args = { "--search", "-m", "gpt-5.5" },
 						description = "OpenAI Codex CLI with web search",
 						provider = "terminal",
