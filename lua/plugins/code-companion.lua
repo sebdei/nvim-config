@@ -59,6 +59,16 @@ return {
 							model = {
 								default = "gpt-5.5",
 							},
+							temperature = {
+								enabled = function()
+									return false
+								end,
+							},
+							top_p = {
+								enabled = function()
+									return false
+								end,
+							},
 						},
 					})
 				end,
