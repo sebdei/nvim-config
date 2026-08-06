@@ -16,6 +16,7 @@ return {
 		{ "<leader>f.", ":FzfLua resume<CR>", desc = "[F]ind resume[.]" },
 		{ "<leader>f/", ":FzfLua grep_curbuf<CR>", desc = "[F]ind in current buffer" },
 		{ "<leader>fW", ":FzfLua grep_cWORD<CR>", desc = "[F]ind [W]ORD" },
+		{ "<leader>fb", ":FzfLua git_bcommits<CR>", desc = "[F]ind [B]uffer commits" },
 		{ "<leader>fc", ":FzfLua commands<CR>", desc = "[F]ind [C]ommands" },
 		{ "<leader>fd", ":FzfLua diagnostics_document<CR>", desc = "[F]ind [D]iagnostics" },
 		{ "<leader>ff", ":FzfLua files<CR>", desc = "[F]ind [F]iles" },
