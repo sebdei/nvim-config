@@ -2,28 +2,28 @@ return {
 	"nickjvandyke/opencode.nvim",
 	enabled = true,
 	event = "VeryLazy",
-	config = function()
-		---@type opencode.Opts
-		vim.g.opencode_opts = {
-			-- Your configuration, if any; goto definition on the type for details
-		}
-
-		vim.keymap.set("n", "<S-Up>", function()
-			require("opencode").command("session.half.page.up")
-		end, { desc = "Scroll OpenCode up" })
-		vim.keymap.set("n", "<S-Down>", function()
-			require("opencode").command("session.half.page.down")
-		end, { desc = "Scroll OpenCode down" })
-	end,
-
 	keys = {
-		{ "<leader>co", '<Cmd>lua require("opencode").ask("@this: ")<CR>', mode = { "n", "x" }, desc = "Ask OpenCode" },
-		{ "<leader>cx", '<Cmd>lua require("opencode").select()<CR>', mode = { "n", "x" }, desc = "Select OpenCode" },
 		{
-			"<leader>cs",
-			'<Cmd>lua vim.env.OPENCODE_ENABLE_EXA = "1"; require("opencode").ask("")<CR>',
+			"<leader>cl",
+			function()
+				return require("opencode").operator("@this ") .. "_"
+			end,
+			mode = "n",
+			expr = true,
+			desc = "Append line to OpenCode",
+		},
+		{
+			"<leader>cn",
+			function()
+				vim.cmd("vsplit term://opencode --port")
+			end,
+			desc = "OpenCode [n]ew terminal",
+		},
+		{
+			"<leader>co",
+			'<Cmd>lua require("opencode").ask("@this: ")<CR>',
 			mode = { "n", "x" },
-			desc = "OpenCode web search [e]nabled",
+			desc = "Ask OpenCode",
 		},
 		{
 			"<leader>cr",
@@ -35,13 +35,30 @@ return {
 			desc = "Append range to OpenCode",
 		},
 		{
-			"<leader>cl",
+			"<leader>cs",
+			'<Cmd>lua vim.env.OPENCODE_ENABLE_EXA = "1"; require("opencode").ask("")<CR>',
+			mode = { "n", "x" },
+			desc = "OpenCode web [s]earch enabled",
+		},
+		{
+			"<leader>cx",
+			'<Cmd>lua require("opencode").select()<CR>',
+			mode = { "n", "x" },
+			desc = "Select OpenCode",
+		},
+		{
+			"<S-Down>",
 			function()
-				return require("opencode").operator("@this ") .. "_"
+				require("opencode").command("session.half.page.down")
 			end,
-			mode = "n",
-			expr = true,
-			desc = "Append line to OpenCode",
+			desc = "Scroll OpenCode down",
+		},
+		{
+			"<S-Up>",
+			function()
+				require("opencode").command("session.half.page.up")
+			end,
+			desc = "Scroll OpenCode up",
 		},
 	},
 }
