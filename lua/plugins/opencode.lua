@@ -28,8 +28,9 @@ return {
 	keys = {
 		{ "<leader>co", '<Cmd>lua require("opencode").ask("@this: ")<CR>', mode = { "n", "x" }, desc = "Ask OpenCode" },
 		{ "<leader>cx", '<Cmd>lua require("opencode").select()<CR>', mode = { "n", "x" }, desc = "Select OpenCode" },
+		{ "<leader>cs", '<Cmd>lua vim.env.OPENCODE_ENABLE_EXA = "1"; require("opencode").ask("Search the web for: ")<CR>', mode = { "n", "x" }, desc = "OpenCode web search" },
 		{
-			"<leader>car",
+			"<leader>cr",
 			function()
 				return require("opencode").operator("@this ")
 			end,
@@ -38,7 +39,7 @@ return {
 			desc = "Append range to OpenCode",
 		},
 		{
-			"<leader>cal",
+			"<leader>cl",
 			function()
 				return require("opencode").operator("@this ") .. "_"
 			end,
