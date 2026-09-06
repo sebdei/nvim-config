@@ -76,10 +76,10 @@ return {
 		},
 	},
 	keys = {
-		{ "<leader>ci", ":CodeCompanion<CR>", mode = { "n", "v" }, desc = "[C]ode Companion [I]nline" },
-		{ "<leader>ca", ":CodeCompanionActions<CR>", mode = { "n", "v" }, desc = "[C]ode Companion [A]ctions" },
-		{ "<leader>cc", ":CodeCompanionChat<CR>", mode = { "n", "v" }, desc = "[C]ode Companion [C]hat" },
-		{ "<leader>cm", ":CodeCompanionCmd<CR>", mode = { "n", "v" }, desc = "[C]ode Companion c[m]d" },
-		{ "<leader>cl", ":CodeCompanionCLI<CR>", mode = { "n", "v" }, desc = "[C]ode Companion C[L]I" },
+		-- { "<leader>ci", ":CodeCompanion<CR>", mode = { "n", "v" }, desc = "[C]ode Companion [I]nline" },
+		-- { "<leader>ca", ":CodeCompanionActions<CR>", mode = { "n", "v" }, desc = "[C]ode Companion [A]ctions" },
+		-- { "<leader>cc", ":CodeCompanionChat<CR>", mode = { "n", "v" }, desc = "[C]ode Companion [C]hat" },
+		-- { "<leader>cm", ":CodeCompanionCmd<CR>", mode = { "n", "v" }, desc = "[C]ode Companion c[m]d" },
+		-- { "<leader>cl", ":CodeCompanionCLI<CR>", mode = { "n", "v" }, desc = "[C]ode Companion C[L]I" },
 	},
 }

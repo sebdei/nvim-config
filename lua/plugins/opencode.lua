@@ -7,6 +7,23 @@ return {
 		vim.g.opencode_opts = {
 			-- Your configuration, if any; goto definition on the type for details
 		}
+
+		local function scroll(buf)
+			vim.keymap.set("n", "<S-Up>", function()
+				require("opencode").command("session.half.page.up")
+			end, { buffer = buf, desc = "Scroll OpenCode up" })
+			vim.keymap.set("n", "<S-Down>", function()
+				require("opencode").command("session.half.page.down")
+			end, { buffer = buf, desc = "Scroll OpenCode down" })
+		end
+
+		vim.api.nvim_create_autocmd("TermOpen", {
+			callback = function(event)
+				if vim.api.nvim_buf_get_name(event.buf):match("opencode") then
+					scroll(event.buf)
+				end
+			end,
+		})
 	end,
 	keys = {
 		{ "<leader>co", '<Cmd>lua require("opencode").ask("@this: ")<CR>', mode = { "n", "x" }, desc = "Ask OpenCode" },
@@ -28,18 +45,6 @@ return {
 			mode = "n",
 			expr = true,
 			desc = "Append line to OpenCode",
-		},
-		{
-			"<S-Up>",
-			'<Cmd>lua require("opencode").command("session.half.page.up")<CR>',
-			mode = { "n" },
-			desc = "Scroll OpenCode up",
-		},
-		{
-			"<S-Down>",
-			'<Cmd>lua require("opencode").command("session.half.page.down")<CR>',
-			mode = { "n" },
-			desc = "Scroll OpenCode down",
 		},
 	},
 }
