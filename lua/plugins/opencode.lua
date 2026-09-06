@@ -21,9 +21,9 @@ return {
 		{ "<leader>cx", '<Cmd>lua require("opencode").select()<CR>', mode = { "n", "x" }, desc = "Select OpenCode" },
 		{
 			"<leader>cs",
-			'<Cmd>lua vim.env.OPENCODE_ENABLE_EXA = "1"; require("opencode").ask("Search the web for: ")<CR>',
+			'<Cmd>lua vim.env.OPENCODE_ENABLE_EXA = "1"; require("opencode").ask("")<CR>',
 			mode = { "n", "x" },
-			desc = "OpenCode web search",
+			desc = "OpenCode web search [e]nabled",
 		},
 		{
 			"<leader>cr",
