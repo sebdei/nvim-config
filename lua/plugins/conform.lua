@@ -29,6 +29,8 @@ return {
 			end
 		end,
 		formatters_by_ft = {
+			-- Apply trimming on save for every filetype (replaces the old manual BufWritePre autocmd)
+			["*"] = { "trim_whitespace", "trim_newlines" },
 			lua = { "stylua" },
 			-- Conform can also run multiple formatters sequentially
 			-- python = { "isort", "black" },

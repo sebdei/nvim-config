@@ -6,7 +6,7 @@ vim.opt.termguicolors = true
 
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.showmode = true
+vim.o.showmode = false
 
 vim.schedule(function()
 	vim.o.clipboard = "unnamedplus"
@@ -57,28 +57,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 	callback = function()
 		vim.hl.on_yank()
-	end,
-})
-
--- Create an autocommand group for formatting on save
-local format_on_save = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-	group = format_on_save,
-	pattern = "*",
-	callback = function()
-		-- 1. Save current cursor position and search register
-		local save_cursor = vim.fn.getpos(".")
-		local old_query = vim.fn.getreg("/")
-
-		-- 2. Trim trailing whitespace (VS Code's trimTrailingWhitespace)
-		vim.cmd([[%s/\s\+$//e]])
-
-		-- 3. Trim extra newlines at the end of the file (VS Code's trimFinalNewlines)
-		vim.cmd([[%s/\n\+\%$//e]])
-
-		-- 4. Restore search register and cursor position
-		vim.fn.setreg("/", old_query)
-		vim.fn.setpos(".", save_cursor)
 	end,
 })
