@@ -18,6 +18,7 @@
   "mini.files": { "branch": "main", "commit": "a5689dae6b732955e33eec225b798d6815063179" },
   "mini.icons": { "branch": "main", "commit": "98faae31e9be1cc054ae63485e58ceb185efcad0" },
   "mini.notify": { "branch": "main", "commit": "13df5edffc3e27937b166a0f25a8329b46e15a4e" },
+  "mini.pairs": { "branch": "main", "commit": "b1c5a726921b7a8c9321e9a7a208aa0571de5810" },
   "mini.statusline": { "branch": "main", "commit": "b5547f44560dae3ccd81f914256fa6f705837022" },
   "neo-tree.nvim": { "branch": "main", "commit": "b01ee1769144c4491ea44bc329cb84040e9793be" },
   "nvim-lspconfig": { "branch": "master", "commit": "615d7b2712efb2f530a83a9d0466acafba6b1d6f" },
