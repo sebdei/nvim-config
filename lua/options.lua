@@ -1,6 +1,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Nerd Font is installed (used by which-key icon spacing)
+vim.g.have_nerd_font = true
+
 -- enable 24-bit color
 vim.opt.termguicolors = true
 
