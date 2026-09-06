@@ -1,15 +1,16 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	lazy = false,
+	branch = "main",
+	event = { "BufReadPre", "BufNewFile" },
 	build = ":TSUpdate",
 	config = function()
 		local supported_languages = { "go", "java", "javascript", "lua", "vue", "yaml" }
 
-		require("nvim-treesitter").setup({
-			ensure_installed = supported_languages,
-			highlight = { enable = true },
-		})
+		require("nvim-treesitter").setup()
+		-- Install parsers + queries for the languages you use (no-op if installed)
+		require("nvim-treesitter").install(supported_languages)
 
+		-- Enable treesitter highlighting per filetype (features are not auto-enabled)
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = table.concat(supported_languages, ","),
 			callback = function(args)
