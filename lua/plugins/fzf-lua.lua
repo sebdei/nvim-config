@@ -1,3 +1,14 @@
+local function get_dir_of_buffer()
+	local bufferDir = vim.fn.expand("%:p:h")
+
+	if bufferDir == "" or vim.bo.buftype ~= "" then
+		-- fallback for unnamed/terminal/oil-style buffers
+		return vim.uv.cwd()
+	else
+		return bufferDir
+	end
+end
+
 return {
 	"ibhagwan/fzf-lua",
 
@@ -7,21 +18,31 @@ return {
 	dependencies = { "nvim-mini/mini.icons" },
 
 	---@module "fzf-lua"
-	---@type fzf-lua.Config|{}
-	---@diagnostic disable: missing-fields
-	opts = {},
-	---@diagnostic enable: missing-fields
 	keys = {
 		{ "<leader><leader>", ":FzfLua buffers<CR>", desc = "[F]ind in Buffers" },
 		{ "<leader>f.", ":FzfLua resume<CR>", desc = "[F]ind resume[.]" },
 		{ "<leader>f/", ":FzfLua grep_curbuf<CR>", desc = "[F]ind in current buffer" },
 
 		{ "<leader>fC", ":FzfLua git_commits<CR>", desc = "[F]ind [C]ommits" },
+		{ "<leader>fD", ":FzfLua diagnostics_document<CR>", desc = "[F]ind [d]iagnostics" },
 		{ "<leader>fW", ":FzfLua grep_cWORD<CR>", desc = "[F]ind [W]ORD" },
 
 		{ "<leader>fb", ":FzfLua git_bcommits<CR>", desc = "[F]ind [b]uffer commits" },
 		{ "<leader>fc", ":FzfLua commands<CR>", desc = "[F]ind [c]ommands" },
-		{ "<leader>fd", ":FzfLua diagnostics_document<CR>", desc = "[F]ind [d]iagnostics" },
+		{
+			"<leader>fdf",
+			function()
+				require("fzf-lua").files({ cwd = get_dir_of_buffer(), cwd_prompt = true })
+			end,
+			desc = "[F]ind in buffers [d]ir [f]iles",
+		},
+		{
+			"<leader>fdg",
+			function()
+				require("fzf-lua").live_grep({ cwd = get_dir_of_buffer() })
+			end,
+			desc = "[F]ind in buffer [d]ir [g]rep",
+		},
 		{ "<leader>ff", ":FzfLua files<CR>", desc = "[F]ind [F]iles" },
 		{ "<leader>fg", ":FzfLua live_grep<CR>", desc = "[F]ind [g]rep" },
 		{ "<leader>fh", ":FzfLua helptags<CR>", desc = "[F]ind [h]elp" },
