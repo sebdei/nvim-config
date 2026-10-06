@@ -12,7 +12,7 @@ return {
 		"saghen/blink.cmp",
 	},
 	opts = {
-		language_servers = { "lua_ls", "gopls", "jdtls", "ts_ls", "vue_ls" },
+		language_servers = { "lua_ls", "gopls", "jdtls", "vtsls", "vue_ls" },
 	},
 	config = function(_, opts)
 		-- Get blink.cmp capabilities for each language
@@ -23,6 +23,15 @@ return {
 			vim.lsp.config(value, { capabilities = capabilities })
 			vim.lsp.enable(value)
 		end
+
+		-- lspconfig's vtsls default filetypes exclude `vue` and override lsp/vtsls.lua
+		-- because the plugin is loaded later. Re-assert it so vtsls attaches to .vue
+		-- buffers (Volar hybrid mode needs a TS client there for vue_ls).
+		local vtsls_filetypes = vim.deepcopy(vim.lsp.config.vtsls.filetypes) or {}
+		if not vim.tbl_contains(vtsls_filetypes, "vue") then
+			table.insert(vtsls_filetypes, "vue")
+		end
+		vim.lsp.config("vtsls", { filetypes = vtsls_filetypes })
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),

@@ -1,6 +1,10 @@
+local vue_language_server_path = vim.fn.stdpath("data")
+	.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+
+---@type vim.lsp.Config
 return {
+	cmd = { "vtsls", "--stdio" },
 	init_options = { hostInfo = "neovim" },
-	cmd = { "typescript-language-server", "--stdio" },
 	filetypes = {
 		"javascript",
 		"javascriptreact",
@@ -8,6 +12,21 @@ return {
 		"typescript",
 		"typescriptreact",
 		"typescript.tsx",
+		"vue",
+	},
+	settings = {
+		vtsls = {
+			tsserver = {
+				globalPlugins = {
+					{
+						name = "@vue/typescript-plugin",
+						location = vue_language_server_path,
+						languages = { "vue" },
+						configNamespace = "typescript",
+					},
+				},
+			},
+		},
 	},
 	root_dir = function(bufnr, on_dir)
 		-- The project root is where the LSP can be started from
@@ -75,7 +94,7 @@ return {
 		end,
 	},
 	on_attach = function(client, bufnr)
-		-- ts_ls provides `source.*` code actions that apply to the whole file. These only appear in
+		-- vtsls provides `source.*` code actions that apply to the whole file. These only appear in
 		-- `vim.lsp.buf.code_action()` if specified in `context.only`.
 		vim.api.nvim_buf_create_user_command(bufnr, "LspTypescriptSourceAction", function()
 			local source_actions = vim.tbl_filter(function(action)

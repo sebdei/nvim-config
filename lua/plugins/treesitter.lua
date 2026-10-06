@@ -4,7 +4,7 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	build = ":TSUpdate",
 	config = function()
-		local supported_languages = { "go", "java", "javascript", "lua", "vue", "yaml" }
+		local supported_languages = { "go", "java", "javascript", "lua", "typescript", "vue", "yaml" }
 
 		require("nvim-treesitter").setup()
 		-- Install parsers + queries for the languages you use (no-op if installed)

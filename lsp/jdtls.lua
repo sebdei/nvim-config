@@ -19,9 +19,9 @@ end
 local root_markers1 = {
 	-- Multi-module projects
 	"mvnw", -- Maven
-	"gradlew", -- Gradle
-	"settings.gradle", -- Gradle
-	"settings.gradle.kts", -- Gradle
+	-- "gradlew", -- Gradle
+	-- "settings.gradle", -- Gradle
+	-- "settings.gradle.kts", -- Gradle
 	-- Use git directory as last resort for multi-module maven projects
 	-- In multi-module maven projects it is not really possible to determine what is the parent directory
 	-- and what is submodule directory. And jdtls does not break if the parent directory is at higher level than
@@ -32,8 +32,8 @@ local root_markers2 = {
 	-- Single-module projects
 	"build.xml", -- Ant
 	"pom.xml", -- Maven
-	"build.gradle", -- Gradle
-	"build.gradle.kts", -- Gradle
+	-- "build.gradle", -- Gradle
+	-- "build.gradle.kts", -- Gradle
 }
 
 ---@type vim.lsp.Config
@@ -53,7 +53,6 @@ return {
 			"jdtls",
 			"-data",
 			data_dir,
-			get_jdtls_jvm_args(),
 		}
 
 		-- 2. Define the performance tuning arguments
@@ -70,13 +69,8 @@ return {
 		-- 3. Safely merge the performance args into the main command list
 		vim.list_extend(config_cmd, perf_args)
 
-		-- 4. Safely merge your custom get_jdtls_jvm_args() without nesting tables
-		local user_jvm_args = get_jdtls_jvm_args() or {}
-		if type(user_jvm_args) == "table" then
-			vim.list_extend(config_cmd, user_jvm_args)
-		elseif type(user_jvm_args) == "string" then
-			table.insert(config_cmd, user_jvm_args)
-		end
+		-- 4. Merge custom JVM args from env (all returned values, called once)
+		vim.list_extend(config_cmd, { get_jdtls_jvm_args() })
 
 		return vim.lsp.rpc.start(config_cmd, dispatchers, {
 			cwd = config.cmd_cwd,
@@ -87,4 +81,25 @@ return {
 	filetypes = { "java" },
 	root_markers = { root_markers1, root_markers2 },
 	init_options = {},
+	settings = {
+		java = {
+			-- Kernpunkt: jdtls indexiert, baut aber nicht nach target/
+			autobuild = { enabled = false },
+			configuration = {
+				-- kein automatischer Re-Import bei jedem pom.xml-Save
+				updateBuildConfiguration = "interactive",
+			},
+			maven = {
+				downloadSources = true,
+			},
+			eclipse = {
+				downloadSources = true,
+			},
+			references = {
+				includeDecompiledSources = true,
+			},
+			implementationsCodeLens = { enabled = false },
+			referencesCodeLens = { enabled = false },
+		},
+	},
 }
